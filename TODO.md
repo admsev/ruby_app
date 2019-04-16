@@ -1,3 +1,5 @@
+# The task
+
 Before you start coding (and let’s be honest, we know that’s what you want to do), please read the following.
 
 Firstly, the test should take you no more than 2.5 hours to complete.
@@ -34,3 +36,18 @@ Write a ruby script that:
       ```
 
 Finally, have some fun – Feel free to make changes or design something if you think it meets the criteria above, but would produce better outcomes and of course, the sooner you return the test, the quicker we can move the process.
+
+# Notes by Alexander Manzyuk (move to README)
+## Note: there was bad formatting of the test task PDF.
+In real life, I would clarify requirements (at least, formatting of the output: it was unclear whether the app should print each page report on a new line).
+
+# Potential enhancements
+
+## Make it 2 commands like this:
+
+    * `ruby parser.rb --visits webserver.log`
+    * `ruby parser.rb --unique-visits webserver.log`
+
+Having these reports separate will make it easier to work with, both for people and other utilities.
+
+Consider using [Thor](https://github.com/erikhuda/thor) for this purpose.
