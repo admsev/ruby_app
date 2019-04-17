@@ -4,7 +4,6 @@ describe StatsPresenter do
   let(:presenter) { described_class.new(stats) }
   let(:stats) { Stats.new(file_name) }
 
-  # TODO: DRY. potentially, move to shared context
   let(:file_name) { 'webserver.log' }
   let(:webserver_log_content) do
     StringIO.new <<~TXT
@@ -21,8 +20,8 @@ describe StatsPresenter do
     allow(File).to receive(:open).with(file_name, 'r').and_return(webserver_log_content)
   end
 
-  describe '#visits_report' do
-    subject { presenter.visits_report }
+  describe '#visits' do
+    subject { presenter.visits }
 
     let(:expected_result) do
       [
@@ -36,8 +35,8 @@ describe StatsPresenter do
     end
   end
 
-  describe '#hosts_report' do
-    subject { presenter.hosts_report }
+  describe '#unique_views' do
+    subject { presenter.unique_views }
 
     let(:expected_result) do
       [
