@@ -21,23 +21,15 @@ describe Stats do
 
   describe '#visits' do
     subject { stats.visits }
-
     it 'returns a number of visits for each page' do
-      is_expected.to eq('/help_page/1' => 2, '/contact' => 4)
+      is_expected.to eq([['/contact', 4], ['/help_page/1', 2]])
     end
   end
 
-  describe '#hosts' do
-    subject { stats.hosts }
-    let(:expected_result) do
-      {
-        '/help_page/1' => Set['126.318.035.038', '126.318.035.039'],
-        '/contact'     => Set['184.123.665.067', '184.123.665.068', '184.123.665.069']
-      }
-    end
-
-    it 'returns a number of unique hosts visited each page' do
-      is_expected.to eq expected_result
+  describe '#unique_views' do
+    subject { stats.unique_views }
+    it 'returns a number of unique views for each page' do
+      is_expected.to eq([['/contact', 3], ['/help_page/1', 2]])
     end
   end
 end

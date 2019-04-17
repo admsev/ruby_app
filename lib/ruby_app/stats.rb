@@ -1,16 +1,22 @@
-require 'set'
-
 # Stats loads webserver.log and caclculates numbers
 # Usage: Stats.new('webserver.log')
 class Stats
-  attr_reader :visits
-  attr_reader :hosts
-
   def initialize(file_name)
-    @visits = {}
-    @hosts = {}
+    @data = {}
 
     load_file(file_name)
+  end
+
+  def visits
+    @data.map do |url, hosts_visits|
+      [url, hosts_visits.values.sum]
+    end.sort_by { |i| i[1] }.reverse
+  end
+
+  def unique_views
+    @data.map do |url, hosts_visits|
+      [url, hosts_visits.length]
+    end.sort_by { |i| i[1] }.reverse
   end
 
   private
@@ -24,16 +30,9 @@ class Stats
   def load_line(line)
     url, host = line.split(/\s/)
 
-    update_visits(url, host)
-    update_hosts(url, host)
-  end
+    @data[url] ||= {}
 
-  def update_visits(url, host)
-    @visits[url] = @visits[url].to_i + 1
-  end
-
-  def update_hosts(url, host)
-    @hosts[url] ||= Set.new
-    @hosts[url].add(host)
+    @data[url][host] ||= 0
+    @data[url][host] += 1
   end
 end
