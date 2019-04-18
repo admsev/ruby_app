@@ -5,7 +5,7 @@ describe Stats do
 
   let(:file_name) { 'webserver.log' }
   let(:webserver_log_content) do
-    StringIO.new <<~TXT
+    <<~TXT
       /help_page/1 126.318.035.038
       /contact 184.123.665.067
       /help_page/1 126.318.035.039
@@ -16,7 +16,7 @@ describe Stats do
   end
 
   before do
-    allow(File).to receive(:open).with(file_name, 'r').and_return(webserver_log_content)
+    allow(File).to receive(:open).with(file_name, 'r').and_return(StringIO.new(webserver_log_content))
   end
 
   describe '#visits' do
