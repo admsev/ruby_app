@@ -2,7 +2,7 @@
 bundle install
 ## Running tests
 * `bundle exec rspec`
-* See `coverage/index.html` for the coverage report
+* IMPORTANT: After you run tests, see `coverage/index.html` for the coverage report
 
 ## Running the app
 `ruby ruby_app.rb webserver.log`
